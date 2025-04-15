@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sevgilime</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #fff5fa);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      color: #ff4d88;
+      margin-top: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 20px 0;
+      align-items: center;
+    }
+
+    .gallery img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .password-container {
+      margin: 20px;
+      text-align: center;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff4d88;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .message {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff0f5;
+      border: 1px solid #ffb3c6;
+      border-radius: 10px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d88;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d88;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        left: calc(100% * var(--x));
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        left: calc(100% * var(--x));
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Sevgilime Özel</h1>
+  <div class="gallery">
+    <img src="Snapchat-44950516.jpg" alt="Fotoğraf 1">
+    <img src="Snapchat-724835776.jpg" alt="Fotoğraf 2">
+    <img src="IMG-20250323-WA0001.jpg" alt="Fotoğraf 3">
+  </div>
+
+  <div class="password-container">
+    <input type="password" id="password" placeholder="Şifre">
+    <button onclick="checkPassword()">Göster</button>
+    <div id="error" class="error"></div>
+  </div>
+
+  <div class="message" id="secretMessage">
+    Sevgilim kelimelerle anlatması çok zor bi şey var içimde: Sana olan sevgim ❤️<br>
+    Her bakışın her gülüşün bana hayat veriyor, solmak üzere olan bi çiçeği suluyomuşsun gibi hayatıma renk katıyosun 🌸<br>
+    Bu site küçük bi hatıra ama içimde kocaman bi kalp var sadece senin için atan 💗<br>
+    Seni her şeyden, herkesten çok seviyorum... iyisiyle kötüsüyle, mutluluğuyla ağlamasıyla her daim. İyi ki sen güzelim. Hiçbi şeyden pişman değilim.<br>
+    Bi daha olsa, bi daha veririm o sakızı 😋, bi daha aşık olurum sana, bi daha peşinden koşarım.<br>
+    Bazen fazla çocuklaşıyo olabilirim yanında ama gelip çocuklarıma bile ortak oluyorsun 😭 beni düşünüyorsun ve gerçekten bu benim için her şeyden daha değerli.<br>
+    Seni en güzel anında da, en kötü anında da yalnız bırakmıcam aşkım 💕 İyi ki sevgilimsin, iyi ki benimsin, iyi ki birbirimizin.<br>
+    Senin olan her şeyi sadece senin olduğu için seviyorum... İYİ Kİ SEN GÜZELİM 💘
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const message = document.getElementById("secretMessage");
+      const error = document.getElementById("error");
+      if (input === "0402") {
+        message.style.display = "block";
+        error.textContent = "";
+      } else {
+        message.style.display = "none";
+        error.textContent = "loserrrr 🖕 sadece sevgilim şifreyi bilebilir";
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.setProperty('--x', Math.random());
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.top = `100%`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
